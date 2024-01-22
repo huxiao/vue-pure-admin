@@ -1,5 +1,6 @@
 import { http } from "@/utils/http";
 
+/** 用户登录结果 */
 export type UserResult = {
   success: boolean;
   data: {
@@ -16,6 +17,7 @@ export type UserResult = {
   };
 };
 
+/** token刷新结果 */
 export type RefreshTokenResult = {
   success: boolean;
   data: {

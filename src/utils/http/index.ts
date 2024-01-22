@@ -172,13 +172,16 @@ class PureHttp {
     });
   }
 
-  /** 单独抽离的post工具函数 */
-  public post<T, P>(
+  /**
+   * P: 提交数据的结构{data:{...}}
+   * T: 返回结果的结构
+   */
+  public post<P, T>(
     url: string,
-    params?: AxiosRequestConfig<T>,
+    params?: AxiosRequestConfig<P>,
     config?: PureHttpRequestConfig
-  ): Promise<P> {
-    return this.request<P>("post", url, params, config);
+  ): Promise<T> {
+    return this.request<T>("post", url, params, config);
   }
 
   /** 单独抽离的get工具函数 */

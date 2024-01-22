@@ -51,20 +51,19 @@ export const useUserStore = defineStore({
       this.loginDay = Number(value);
     },
     /** 登入 */
-    async loginByUsername(data) {
-      return new Promise<UserResult>((resolve, reject) => {
-        getLogin(data)
-          .then(data => {
-            if (data) {
-              setToken(data.data);
-              resolve(data);
-            }
-          })
-          .catch(error => {
-            reject(error);
-          });
-      });
+    async loginByUsername(data: object) {
+      try {
+        const dataResult: UserResult = await getLogin(data);
+
+        if (dataResult) {
+          setToken(dataResult.data);
+          return dataResult;
+        }
+      } catch (error) {
+        throw error;
+      }
     },
+
     /** 前端登出（不调用接口） */
     logOut() {
       this.username = "";
